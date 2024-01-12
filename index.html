@@ -1,12 +1,112 @@
 <html>
-	<body style="background-color:black;">
+	<body style="background-color:black;" onload="onLoad()">
 		<div id="page">
+		  <button onclick="setLanguage('en')">EN</button>
+		  <button onclick="setLanguage('hu')">HU</button>
 			<div id="titleFrame" style="position: relative">
-				<h2 style="text-align:center;color:white;">Bitroller Technologies</h2>
+				<h2 style="text-align:center;color:white;">Bitroller Solutions</h2>
 				<div id="introFrame" style="float:top;position: relative">
-					<p style="text-align:center;color:white;">Cutting edge NLP solutions.</p>
+					<h3 id="title" style="text-align:center;color:white;"></h3>
+					<div style="text-align:center">
+					<a href='https://github.com/bitroller/bitroller.github.io/download/hi.apk'>
+					<img alt='Get it on GitHub' width="20%" height="auto"
+					src='images/get-it-on-github.png'/></a>
+					<a href='https://play.google.com/store/apps/details?id=com.bitroller.hi'>
+					<img alt='Get it on Google Play' width="20%" height="auto"
+					src='images/get-it-on-google-play.png'/></a>
+					</div>
+					<h4 id="privacyHeader" style="text-align:center;color:white;"></h4>
+					<p id="privacy" style="text-align:justify;color:white;"></p>
+					<h4 id="descriptionHeader" style="text-align:center;color:white;"></h4>
+					<p id="description" style="text-align:justify;color:white;white-space:pre-line;"></p>
 				</div>
 			</div>
 		</div>
-	</body>
+    <script>
+        function setLanguage(lang) {
+            location.hash = lang;
+            setText();
+        }
+ 
+        let language = {
+            en: {
+                title: "Human Interface",
+                privacyHeader: "User Data Privacy",
+                privacy: "This software only runs in the foreground i.e. it's user interface is visible when it is being used."+
+                " When this software is being used, it stores every sentence pronounced after being transcribed by the system's speech to text"+
+                " service and received as input. The sentences are stored on the device and they are never sent over anywhere."+
+                " The only purpose of collecting them is to be able to look up in an earlier sentence something you are referring to in the"+
+                " currently interpreted one.",
+                descriptionHeader: "Description",
+                description: "This app is a demo of the <a href='https://github.com/r0ller/alice/wiki'>Alice nlp project</a>."+
+                " Check out the project's wiki page for other use cases/platforms."+
+                " The core functionality of the Android app is to enable its users to make phone calls"+
+                " (and send sms which is currently only available in Hungarian) via voice commands so it's intended for in-vehicle hands-free"+
+                " use.\n\n"+
+                " The difference between the GitHub hosted version and the Google Play Store hosted version is that the latter cannot send"+
+                " messages directly to the recipient but directs you to the default message handler.\n\n"+
+                "Currently, you can use the voice control to list contacts or make phone calls. In order to take action, touch the screen. The"+
+                " voice recognition will wait for your command to transform it to text, which will be interpreted by the app and in the end"+
+                " you'll see the result on the screen. Please, note that the voice recognition is not developed as part of the app, it's provided"+
+                " by the Android system and does not work offline.\n\n"+
+                "The app does not run in the background but you can make it work together with other apps that do so, to launch this."+
+                " For example, you can start it via Google Assistant (after activating it with 'Ok Google') by saying 'Open hi'.\n\n"+
+                "You may report any issues or bugs on the <a href='https://github.com/r0ller/alice/issues'>project issue page</a> or via"+
+                " the email address set on github.\n\n"+
+                "To get to know the language model, ask for help in the app.\n\n"
+            },
+            hu: {
+                title: "Human Interface",
+                privacyHeader: "Adatkezelés",
+                privacy: "Ez a program használat közben mindig előtérben fut vagyis látható a felhasználói felülete. Használat közben minden"+
+                " mondatot tárol miután a rendszer a beszédet írott szöveggé alakítva továbbítja a program számára. A mondatok az eszközön"+
+                " vannak tárolva és sehová nincsenek továbbítva. A tárolás egyetlen célja, hogy az éppen értelmezett mondat visszautalásait"+
+                " előkereshetővé tegye egy korábbi mondatban.",
+                descriptionHeader: "Leírás",
+                description: "Az app gyakorlatilag az <a href='https://github.com/r0ller/alice/wiki'>Alice projekt</a> keretében fejlesztett"+
+                " nlp interpreter egy demója. Egyéb felhasználási területek és platformok a projekt wiki oldalán találhatók."+
+                " Az Android app fő funkciója, hogy lehetővé tegye a felhasználók számára a telefonhívást és"+
+                " sms küldést hangvezérlésen keresztül vagyis leginkább autós, kéz nélküli használatra való.\n\n"+
+                " A GitHubról illetve a Google Play Storeból letölthető verziók között az a különbség, hogy az utóbbi nem tud közvetlenül sms-t"+
+                " küldeni a címzettnek, ehelyett az alapértelmezett üzenetkezelő alkalmazásba irányít.\n\n"+
+                "Jelenleg a hangvezérlés annyira képes, hogy utasításra névjegyeket keres, telefonhívást kezdeményez vagy smst"+
+                " küld. Minden utasítás előtt meg kell érinteni a képernyőt ahhoz, hogy a hangfelismerő program elinduljon, ami szöveggé"+
+                " alakítja a beszédet, amit aztán az interpreter értelmez, végül pedig az eredmény a kijelzőn látható."+
+                " A felhasznált hangfelismerő nem a programhoz tartozik, nem saját fejlesztés, az android rendszer része illetve"+
+                " internetkapcsolat nélkül vagyis offline nem működik.\n\n"+
+                "A Google Asszisztens segítségével kulcsszóra indítható, de csak ha az asszisztens nyelve angolra van állítva ugyanis az"+
+                " jelenleg a magyar nyelvet nem támogatja alkalmazásindítás esetén. Az app menüjében pedig be lehet állítani milyen nyelven"+
+                " működjön a hangfelismerő. Vagyis egy 'Ok Google', 'Hang Start' után ha elindul az app, már lehet magyarul folytatni.\n\n"+
+                "A felmerülő hibákat a <a href='https://github.com/r0ller/alice/issues'>projekt github oldalán</a> lehet jelezni vagy"+
+                " az ott megadott email címen.\n\n"+
+                "A nyelvi modell használatának megismeréséhez kérd az alkalmazásban az útmutatót.\n\n"
+            }
+        };
+        function setText(){
+        if (window.location.hash) {
+ 
+            if (window.location.hash == "#en") {
+                title.innerHTML = language.en.title;
+                privacyHeader.innerHTML = language.en.privacyHeader;
+                privacy.innerHTML = language.en.privacy;
+                descriptionHeader.innerHTML = language.en.descriptionHeader;
+                description.innerHTML = language.en.description;
+            }
+            else if (window.location.hash == "#hu") {
+                title.innerHTML = language.hu.title;
+                privacyHeader.innerHTML = language.hu.privacyHeader;
+                privacy.innerHTML = language.hu.privacy;
+                descriptionHeader.innerHTML = language.hu.descriptionHeader;
+                description.innerHTML = language.hu.description;
+            }
+        }
+        }
+
+        function onLoad(){
+          if(window.location.hash=="#en") setLanguage("en");
+          else if(window.location.hash=="#hu") setLanguage("hu");
+          else setLanguage("en");
+        }
+    </script>
+    </body>
 </html>
